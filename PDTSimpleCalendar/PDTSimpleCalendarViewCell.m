@@ -7,6 +7,7 @@
 //
 
 #import "PDTSimpleCalendarViewCell.h"
+#import <Masonry/Masonry.h>
 
 const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 
@@ -14,6 +15,7 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) UIView *yellowCircle;
 
 @end
 
@@ -73,24 +75,39 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
         _date = nil;
         _isToday = NO;
         _dayLabel = [[UILabel alloc] init];
+        
+        _yellowCircle = [[UIView alloc] init];
+        self.yellowCircle.backgroundColor = [UIColor colorWithRed:248 / 255.0 green:191 / 255.0 blue:0 / 255.0 alpha:1];
+        
         [self.dayLabel setFont:[self textDefaultFont]];
         [self.dayLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.contentView addSubview:self.yellowCircle];
         [self.contentView addSubview:self.dayLabel];
-
+        
         //Add the Constraints
         [self.dayLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.dayLabel setBackgroundColor:[UIColor clearColor]];
+        [self.dayLabel setBackgroundColor:[UIColor whiteColor]];
         self.dayLabel.layer.cornerRadius = PDTSimpleCalendarCircleSize/2;
         self.dayLabel.layer.masksToBounds = YES;
-
+        
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:PDTSimpleCalendarCircleSize]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:PDTSimpleCalendarCircleSize]];
-
+        
+        [self.yellowCircle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.dayLabel.mas_top).with.offset(-2); //with is an optional semantic filler
+            make.left.equalTo(self.dayLabel.mas_left).with.offset(-2);
+            make.bottom.equalTo(self.dayLabel.mas_bottom).with.offset(2);
+            make.right.equalTo(self.dayLabel.mas_right).with.offset(2);
+        }];
+        self.yellowCircle.layer.cornerRadius = (PDTSimpleCalendarCircleSize + 4) / 2;
+        
+        self.yellowCircle.hidden = YES;
+        
         [self setCircleColor:NO selected:NO];
     }
-
+    
     return self;
 }
 
