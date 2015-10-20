@@ -291,6 +291,7 @@ static const NSCalendarUnit kCalendarUnitYMD = NSCalendarUnitYear | NSCalendarUn
     
     //Configure the Weekday Header
     self.weekdayHeader = [[PDTSimpleCalendarViewWeekdayHeader alloc] initWithCalendar:self.calendar weekdayTextType:self.weekdayTextType];
+    self.weekdayHeader.textFont = [UIFont fontWithName:@"Avenir-Heavy" size:16.0];
     
     [self.view addSubview:self.weekdayHeader];
     [self.weekdayHeader setTranslatesAutoresizingMaskIntoConstraints:NO];
