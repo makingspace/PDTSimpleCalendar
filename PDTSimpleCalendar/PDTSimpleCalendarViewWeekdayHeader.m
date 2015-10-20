@@ -113,8 +113,7 @@ const CGFloat PDTSimpleCalendarWeekdayHeaderHeight = 20.0f;
                                                          attribute:NSLayoutAttributeNotAnAttribute
                                                         multiplier:1.0f
                                                           constant:1.0]];
-        [self addSubview:bottomLineView];
-        self.textFont = [UIFont fontWithName:@"Avenir-Heavy" size:16.0];
+//        [self addSubview:bottomLineView];
 
         NSString *layoutString = [NSString stringWithFormat:@"|[%@(>=0)]|", [weekdaySymbolLabelNameArr componentsJoinedByString:@"]["]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:layoutString options:NSLayoutFormatAlignAllCenterY metrics:nil views:weekdaySymbolLabelDict]];
