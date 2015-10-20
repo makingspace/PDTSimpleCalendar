@@ -85,36 +85,6 @@ const CGFloat PDTSimpleCalendarWeekdayHeaderHeight = 20.0f;
         
         UIView *bottomLineView = [[UIView alloc] init];
         bottomLineView.backgroundColor = [UIColor colorWithRed:183 / 255.0 green:183 / 255.0 blue:183 / 255.0 alpha:1.0];
-        [self addSubview:bottomLineView];
-        [bottomLineView addConstraint:[NSLayoutConstraint constraintWithItem:self
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:bottomLineView
-                                                                  attribute:NSLayoutAttributeBottom
-                                                                 multiplier:1.0
-                                                                   constant:0]];
-        [bottomLineView addConstraint:[NSLayoutConstraint constraintWithItem:self
-                                                                   attribute:NSLayoutAttributeLeft
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:bottomLineView
-                                                                   attribute:NSLayoutAttributeLeft
-                                                                  multiplier:1.0
-                                                                    constant:0]];
-        [bottomLineView addConstraint:[NSLayoutConstraint constraintWithItem:self
-                                                                   attribute:NSLayoutAttributeRight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:bottomLineView
-                                                                   attribute:NSLayoutAttributeRight
-                                                                  multiplier:1.0
-                                                                    constant:0]];
-        [bottomLineView addConstraint:[NSLayoutConstraint constraintWithItem:bottomLineView
-                                                         attribute:NSLayoutAttributeWidth
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:nil
-                                                         attribute:NSLayoutAttributeNotAnAttribute
-                                                        multiplier:1.0f
-                                                          constant:1.0]];
-        self.textFont = [UIFont fontWithName:@"Avenir-Heavy" size:16.0];
 
         NSString *layoutString = [NSString stringWithFormat:@"|[%@(>=0)]|", [weekdaySymbolLabelNameArr componentsJoinedByString:@"]["]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:layoutString options:NSLayoutFormatAlignAllCenterY metrics:nil views:weekdaySymbolLabelDict]];
