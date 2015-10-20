@@ -58,6 +58,11 @@
 @property (nonatomic, strong) UIColor *overlayTextColor;
 
 /**
+ *  Background color for the overlay view (Month and Year when the user scrolls the calendar)
+ */
+@property (nonatomic, strong) UIColor *overlayBackgroundColor;
+
+/**
  *  Setting this to YES shows an extra row in the header with acronymns for the the weekdays
  *
  *  Default value is NO.
